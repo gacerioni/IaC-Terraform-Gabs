@@ -41,27 +41,3 @@ data "aws_ami" "amazon_linux" {
     ]
   }
 }
-
-resource "aws_eip" "this" {
-  vpc      = true
-  instance = module.ec2.id[0]
-}
-
-resource "aws_kms_key" "this" {
-}
-
-resource "aws_network_interface" "this" {
-  count = 1
-
-  subnet_id = tolist(data.aws_subnet_ids.all.ids)[count.index]
-}
-
-resource "aws_instance" "ec2" {
-  ami           = data.aws_ami.amazon_linux.id
-  instance_type = var.ec2-size
-  subnet_id     = tolist(data.aws_subnet_ids.all.ids)[0]
-
-  tags = {
-    Name = "HelloWorld"
-  }
-}
