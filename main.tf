@@ -9,13 +9,13 @@ echo "Hello Gabs!"
 EOF
 }
 
-terraform {
-  backend "s3" {
-    bucket = "gabs-tf-remote-state"
-    key    = "terraform.tfstate"
-    region = "sa-east-1"
-  }
-}
+#terraform {
+#  backend "s3" {
+#    bucket = "gabs-tf-remote-state"
+#    key    = "terraform.tfstate"
+#    region = "sa-east-1"
+#  }
+#}
 
 ##################################################################
 # Data sources to get VPC, subnet, security group and AMI details
