@@ -13,25 +13,11 @@ output "vpc_security_group_ids" {
   value       = module.ec2.vpc_security_group_ids
 }
 
-output "root_block_device_volume_ids" {
-  description = "List of volume IDs of root block devices of instances"
-  value       = module.ec2.root_block_device_volume_ids
-}
-
-output "ebs_block_device_volume_ids" {
-  description = "List of volume IDs of EBS block devices of instances"
-  value       = module.ec2.ebs_block_device_volume_ids
-}
-
 output "tags" {
   description = "List of tags"
   value       = module.ec2.tags
 }
 
-output "placement_group" {
-  description = "List of placement group"
-  value       = module.ec2.placement_group
-}
 
 output "instance_id" {
   description = "EC2 instance ID"
@@ -41,14 +27,4 @@ output "instance_id" {
 output "instance_public_dns" {
   description = "Public DNS name assigned to the EC2 instance"
   value       = module.ec2.public_dns[0]
-}
-
-output "credit_specification" {
-  description = "Credit specification of EC2 instance (empty list for not t2 instance types)"
-  value       = module.ec2.credit_specification
-}
-
-output "metadata_options" {
-  description = "Metadata options for the instance"
-  value       = module.ec2.metadata_options
 }
