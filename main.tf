@@ -60,10 +60,6 @@ resource "aws_eip" "this" {
   instance = module.ec2.id[0]
 }
 
-resource "aws_placement_group" "web" {
-  name     = "hunky-dory-pg"
-  strategy = "cluster"
-}
 
 resource "aws_kms_key" "this" {
 }
@@ -81,13 +77,12 @@ module "ec2" {
 
   name          = "gabs-terraform-labs-ec2"
   ami           = data.aws_ami.amazon_linux.id
-  #instance_type = "t2.micro"
-  instance_type = var.ec2-size
+  instance_type = "t2.micro"
+  #instance_type = var.ec2-size
   subnet_id     = tolist(data.aws_subnet_ids.all.ids)[0]
   #  private_ips                 = ["172.31.32.5", "172.31.46.20"]
   vpc_security_group_ids      = [module.security_group.security_group_id]
   associate_public_ip_address = true
-  placement_group             = aws_placement_group.web.id
 
   user_data_base64 = base64encode(local.user_data)
 
