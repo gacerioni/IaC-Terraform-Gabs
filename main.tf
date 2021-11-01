@@ -1,97 +1,15 @@
-provider "aws" {
-  region = "sa-east-1"
-}
-
-locals {
-  user_data = <<EOF
-#!/bin/bash
-echo "Hello Gabs!"
-EOF
-}
-
 terraform {
-  backend "s3" {
-    bucket = "default"
-    key    = "default"
-    region = "default"
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 2.0.0"
+    }
   }
 }
-
-##################################################################
-# Data sources to get VPC, subnet, security group and AMI details
-##################################################################
-data "aws_vpc" "default" {
-  default = true
+provider "kubernetes" {
 }
-
-data "aws_subnet_ids" "all" {
-  vpc_id = data.aws_vpc.default.id
-}
-
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-
-  owners = ["amazon"]
-
-  filter {
-    name = "name"
-
-    values = [
-      "amzn-ami-hvm-*-x86_64-gp2",
-    ]
-  }
-
-  filter {
-    name = "owner-alias"
-
-    values = [
-      "amazon",
-    ]
-  }
-}
-
-module "security_group" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.0"
-
-  name        = "ec2-gabs-tf-labs-sg"
-  description = "Security group for example usage with EC2 instance"
-  vpc_id      = data.aws_vpc.default.id
-
-  ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules       = ["http-80-tcp", "all-icmp"]
-  egress_rules        = ["all-all"]
-}
-
-module "ec2" {
-  source                 = "terraform-aws-modules/ec2-instance/aws"
-
-  name                   = "ec2-gabs-tf-labs"
-  instance_count         = 1
-
-  ami                    = data.aws_ami.amazon_linux.id
-  instance_type          = var.ec2-size
-  key_name               = var.key-pair
-  vpc_security_group_ids = [module.security_group.security_group_id]
-  subnet_id              = tolist(data.aws_subnet_ids.all.ids)[0]
-
-  associate_public_ip_address = true
-
-  user_data_base64 = base64encode(local.user_data)
-
-  enable_volume_tags = false
-  root_block_device = [
-    {
-      volume_type = "gp2"
-      volume_size = 10
-      tags = {
-        Name = "my-root-block"
-      }
-    },
-  ]
-
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
+resource "kubernetes_namespace" "test" {
+  metadata {
+    name = "nginx"
   }
 }
