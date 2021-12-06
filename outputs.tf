@@ -1,30 +1,15 @@
-output "ids" {
-  description = "List of IDs of instances"
-  value       = module.ec2.id
+output "s3_bucket_id" {
+    value = aws_s3_bucket.s3_bucket.id
 }
-
-output "public_dns" {
-  description = "List of public DNS names assigned to the instances"
-  value       = module.ec2.public_dns
+output "s3_bucket_arn" {
+    value = aws_s3_bucket.s3_bucket.arn
 }
-
-output "vpc_security_group_ids" {
-  description = "List of VPC security group ids assigned to the instances"
-  value       = module.ec2.vpc_security_group_ids
+output "s3_bucket_domain_name" {
+    value = aws_s3_bucket.s3_bucket.bucket_domain_name
 }
-
-output "tags" {
-  description = "List of tags"
-  value       = module.ec2.tags
+output "s3_hosted_zone_id" {
+    value = aws_s3_bucket.s3_bucket.hosted_zone_id
 }
-
-
-output "instance_id" {
-  description = "EC2 instance ID"
-  value       = module.ec2.id[0]
-}
-
-output "instance_public_dns" {
-  description = "Public DNS name assigned to the EC2 instance"
-  value       = module.ec2.public_dns[0]
+output "s3_bucket_region" {
+    value = aws_s3_bucket.s3_bucket.region
 }
