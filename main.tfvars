@@ -1,2 +1,2 @@
-bucket_prefix = "bartcin-<+service.variables.bucket_prefix>"
+bucket_prefix = "bartcin"
 acl = "private"
