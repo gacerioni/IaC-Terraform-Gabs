@@ -1,2 +1,2 @@
-bucket_prefix = "ilangabs"
+bucket_prefix = "happynewyear"
 acl = "private"
