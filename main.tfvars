@@ -1,2 +1,2 @@
-bucket_prefix = "jgitbug"
+bucket_prefix = "max"
 acl = "private"
