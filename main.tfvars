@@ -1,2 +1,2 @@
-bucket_prefix = "bartcin"
+bucket_prefix = "looksabug"
 acl = "private"
