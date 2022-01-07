@@ -1,2 +1,2 @@
-bucket_prefix = "looksabug"
+bucket_prefix = "jgitbug"
 acl = "private"
