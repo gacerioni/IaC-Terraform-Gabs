@@ -1,2 +1,2 @@
-bucket_prefix = "max"
+bucket_prefix = "workaround"
 acl = "private"
