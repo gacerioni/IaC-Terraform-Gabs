@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:gacerioni/IaC-Terraform-Gabs.git?ref=terragrunt-s3-creator"
+  source = "git::https://github.com/gacerioni/IaC-Terraform-Gabs.git?ref=terragrunt-s3-creator"
 }
 
 generate "provider" {
