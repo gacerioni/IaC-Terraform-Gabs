@@ -11,3 +11,13 @@ provider "aws" {
 }
 EOF
 }
+
+inputs = {
+  bucket_prefix = "terragrunt"
+  acl = "private"
+
+  tags = {
+    environment = "prodgrunt"
+    terraform   = "true"
+  }
+}
