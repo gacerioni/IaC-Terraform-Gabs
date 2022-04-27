@@ -63,11 +63,10 @@ module "security_group" {
   egress_rules        = ["all-all"]
 }
 
-module "ec2" {
+module "ec2_instance" {
   source                 = "terraform-aws-modules/ec2-instance/aws"
 
   name                   = "ec2-gabs-tf-labs"
-  instance_count         = 1
 
   ami                    = data.aws_ami.amazon_linux.id
   instance_type          = var.ec2-size
