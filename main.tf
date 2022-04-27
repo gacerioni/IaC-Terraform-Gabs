@@ -11,9 +11,9 @@ EOF
 
 terraform {
   backend "s3" {
-    bucket = "default"
-    key    = "default"
-    region = "default"
+    bucket = "gabs-terraform-state"
+    key    = "terraformgabsec2.tfstate"
+    region = "sa-east-1"
   }
 }
 
