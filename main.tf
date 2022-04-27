@@ -97,5 +97,6 @@ module "ec2_instance" {
   tags = {
     Terraform   = "true"
     Environment = "dev"
+    Customer = "webex"
   }
 }
