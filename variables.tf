@@ -1,3 +1,9 @@
+variable "region" {
+  type = string
+  description = "The region. Defaults to sa-east-1"
+  default = "sa-east-1"
+}
+
 variable "ec2-size" {
   type = string
   description = "The size of your EC2 instance, like t3a.micro."
