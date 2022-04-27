@@ -1,7 +1,7 @@
-variable "bucket_prefix" {
+variable "instancetype" {
     type        = string
-    description = "(required since we are not using 'bucket') Creates a unique bucket name beginning with the specified prefix. Conflicts with bucket."
-    default     = ""
+    description = "Please choose your instance type (t2.micro) is the default."
+    default     = "t2.micro"
 }
 variable "acl" {
     type        = string
