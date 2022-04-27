@@ -12,7 +12,7 @@ variable "tags" {
     type        = map
     description = "(Optional) A mapping of tags to assign to the bucket."
     default     = {
-        environment = "prod"
+        Name = "ServerGabsTerraformEc2"
         terraform   = "true"
     }
 }
