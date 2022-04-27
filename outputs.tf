@@ -2,7 +2,12 @@ output "ids" {
   description = "List of IDs of instances"
   value       = module.ec2_instance.id
 }
-
+  
+output "region" {
+  description = "AWS Region"
+  value       = var.region
+} 
+  
 output "public_dns" {
   description = "List of public DNS names assigned to the instances"
   value       = module.ec2_instance.public_dns
