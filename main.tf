@@ -77,6 +77,7 @@ module "ec2_instance" {
   key_name               = var.key-pair
   vpc_security_group_ids = [module.security_group.security_group_id]
   subnet_id              = tolist(data.aws_subnets.all.ids)[0]
+  iam_instance_profile   = var.iamrole
 
   associate_public_ip_address = true
 
