@@ -25,7 +25,10 @@ data "aws_vpc" "default" {
 }
 
 data "aws_subnets" "all" {
-  vpc_id = data.aws_vpc.default.id
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
 }
 
 data "aws_ami" "amazon_linux" {
@@ -65,6 +68,7 @@ module "security_group" {
 
 module "ec2_instance" {
   source                 = "terraform-aws-modules/ec2-instance/aws"
+  version                = "3.5.0"
 
   name                   = "ec2-gabs-tf-labs"
 
@@ -72,7 +76,7 @@ module "ec2_instance" {
   instance_type          = var.ec2-size
   key_name               = var.key-pair
   vpc_security_group_ids = [module.security_group.security_group_id]
-  subnet_id              = tolist(data.aws_subnet_ids.all.ids)[0]
+  subnet_id              = tolist(data.aws_subnets.all.ids)[0]
 
   associate_public_ip_address = true
 
