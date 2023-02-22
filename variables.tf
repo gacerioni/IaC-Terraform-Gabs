@@ -4,6 +4,16 @@ variable "region" {
     default     = "sa-east-1"
 }
 
+variable "global_access_key" {
+    type        = string
+    description = "AWS IAM Access Key"
+}
+
+variable "global_secret_key" {
+    type        = string
+    description = "AWS IAM Secret Key"
+}
+
 variable "bucket_prefix" {
     type        = string
     description = "(required since we are not using 'bucket') Creates a unique bucket name beginning with the specified prefix. Conflicts with bucket."
