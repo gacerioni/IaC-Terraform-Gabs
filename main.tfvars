@@ -1,2 +1,2 @@
-bucket_prefix = "variablesgabs"
+bucket_prefix = "secrets"
 acl = "private"
